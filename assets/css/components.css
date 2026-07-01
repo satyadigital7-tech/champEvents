@@ -71,6 +71,8 @@
 }
 .navbar.scrolled .nav-logo-img {
   height: 46px;
+  mix-blend-mode: normal;
+  filter: invert(1) hue-rotate(180deg) drop-shadow(0 0 6px rgba(212,175,55,0.4));
 }
 
 .brand-tag {
@@ -87,8 +89,8 @@
   width: auto;
   max-width: 100px; /* Reduced max-width since text is next to it */
   object-fit: contain;
-  mix-blend-mode: multiply;
-  filter: drop-shadow(0 2px 8px rgba(212,175,55,0.35));
+  mix-blend-mode: normal;
+  filter: invert(1) hue-rotate(180deg) drop-shadow(0 2px 8px rgba(212,175,55,0.35));
   display: block;
 }
 
@@ -249,6 +251,34 @@
 .hamburger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
 .hamburger.open span:nth-child(3) { transform:translateY(-8px) rotate(-45deg); }
 
+/* Laptop header refinements */
+@media (max-width: 1366px) {
+  .nav-container {
+    gap: 12px;
+    padding: 0 16px;
+  }
+  .nav-link {
+    padding: 8px 10px;
+    font-size: 0.82rem;
+  }
+  .nav-btn {
+    padding: 8px 12px;
+    font-size: 0.75rem;
+  }
+  .nav-btn-call, .nav-btn-wa {
+    font-size: 0 !important;
+    padding: 0 !important;
+    width: 36px;
+    height: 36px;
+    justify-content: center;
+    border-radius: 50%;
+  }
+  .nav-btn-call i, .nav-btn-wa i {
+    font-size: 0.9rem !important;
+    margin: 0 !important;
+  }
+}
+
 /* Mobile menu */
 @media(max-width:1024px) {
   .hamburger { display:flex; }
@@ -315,10 +345,11 @@
   inset: 0;
   background-size: cover;
   background-position: center;
+  opacity: 0;
   transition: opacity 1.5s ease, transform 10s ease;
   transform: scale(1.05);
 }
-.hero-slide.active { transform: scale(1); }
+.hero-slide.active { opacity: 1; transform: scale(1); }
 
 .hero-overlay {
   position: absolute;
@@ -457,6 +488,39 @@
 @media(max-width:768px) {
   .hero-btns { gap:12px; }
   .hero-title { font-size:clamp(2.2rem,8vw,3.5rem); }
+}
+
+/* Laptop hero layout improvements */
+@media (max-width: 1440px) {
+  .hero-title {
+    font-size: clamp(2.4rem, 5vw, 4.2rem);
+    margin-bottom: 16px;
+  }
+  .hero-badge {
+    margin-bottom: 16px;
+    padding: 6px 16px;
+    font-size: 0.68rem;
+  }
+  .hero-subtitle {
+    margin-bottom: 28px;
+  }
+  .hero-btns {
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-height: 850px) {
+  .hero-content {
+    justify-content: flex-start;
+    padding-top: 145px;
+  }
+  .hero-badge {
+    margin-top: 0;
+  }
+  .hero-scroll {
+    margin-top: auto;
+    margin-bottom: 10px;
+  }
 }
 
 
@@ -778,12 +842,11 @@
    GALLERY PREVIEW (HOME)
 ======================================================== */
 .gallery-masonry {
-  columns: 3;
-  column-gap: 16px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
 .gallery-item {
-  break-inside: avoid;
-  margin-bottom: 16px;
   border-radius: var(--r-md);
   overflow: hidden;
   position: relative;
@@ -791,6 +854,8 @@
 }
 .gallery-item img {
   width: 100%;
+  height: 280px;
+  object-fit: cover;
   display: block;
   transition: transform var(--tr-s);
 }
@@ -812,8 +877,22 @@
 }
 .gallery-item:hover .gallery-item-overlay i { opacity:1; transform:scale(1); }
 
-@media(max-width:900px) { .gallery-masonry { columns:2; } }
-@media(max-width:480px) { .gallery-masonry { columns:1; } }
+@media(max-width:900px) {
+  .gallery-masonry {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .gallery-item img {
+    height: 250px;
+  }
+}
+@media(max-width:480px) {
+  .gallery-masonry {
+    grid-template-columns: 1fr;
+  }
+  .gallery-item img {
+    height: 220px;
+  }
+}
 
 
 /* ========================================================
@@ -1159,6 +1238,9 @@
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 200px);
   gap: 10px;
+}
+.category-gallery-wrap.grid-4-imgs {
+  grid-template-columns: repeat(2, 1fr);
 }
 .cat-img {
   border-radius: var(--r-md);

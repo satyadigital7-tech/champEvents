@@ -80,7 +80,7 @@ html { font-size:16px; scroll-behavior:smooth; overflow-x:hidden; }
 body {
   font-family: var(--font-b);
   color: var(--text-dark);
-  background: var(--white);
+  background: #f8f8f8;
   line-height: 1.6;
   overflow-x: hidden;
 }
@@ -392,7 +392,7 @@ p  { color:var(--text-med); line-height:1.75; }
 /* ========== HERO PAGE BANNER ========== */
 .page-hero {
   height: 60vh;
-  min-height: 420px;
+  min-height: 450px;
   position: relative;
   display: flex;
   align-items: center;
@@ -417,7 +417,7 @@ p  { color:var(--text-med); line-height:1.75; }
 .page-hero-content {
   position: relative;
   z-index: 2;
-  padding: 0 24px;
+  padding: 80px 24px 20px;
 }
 .page-hero-content .sec-badge { color:var(--champagne); }
 .page-hero-content .sec-badge::before,.page-hero-content .sec-badge::after { background:var(--champagne); }
@@ -513,4 +513,105 @@ p  { color:var(--text-med); line-height:1.75; }
 @media(max-width:480px) {
   :root { --sec-pad:50px 0; --sec-pad-sm:40px 0; }
   .container { padding:0 16px; }
+}
+
+/* ========== GLIGHTBOX OVERRIDES ========== */
+.glightbox-container .gclose {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6) !important;
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: var(--r-full) !important;
+  position: fixed !important;
+  top: 24px !important;
+  right: 24px !important;
+  z-index: 999999 !important;
+  opacity: 1 !important;
+  cursor: pointer !important;
+  transition: all var(--tr-f) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.glightbox-container .gclose:hover {
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+  transform: scale(1.05);
+}
+
+.glightbox-container .gclose svg {
+  width: 16px !important;
+  height: 16px !important;
+  fill: var(--white) !important;
+}
+.glightbox-container .gclose svg path {
+  fill: var(--white) !important;
+}
+
+/* Prev/Next Navigation Overrides */
+.glightbox-container .gprev,
+.glightbox-container .gnext {
+  background: rgba(0, 0, 0, 0.6) !important;
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: var(--r-full) !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  z-index: 999999 !important;
+  transition: all var(--tr-f) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.glightbox-container .gprev:hover,
+.glightbox-container .gnext:hover {
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+}
+
+.glightbox-container .gprev svg,
+.glightbox-container .gnext svg {
+  width: 20px !important;
+  height: 20px !important;
+  fill: var(--white) !important;
+}
+
+/* Slide Caption Box Overrides (Floating Dark Card) */
+.glightbox-container .gslide-description {
+  background: rgba(26, 26, 26, 0.85) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  padding: 12px 24px !important;
+  max-width: 600px !important;
+  width: 90% !important;
+  margin: 0 auto 20px auto !important;
+  border-radius: var(--r-md) !important;
+  box-shadow: var(--sh-lg) !important;
+  text-align: center !important;
+}
+
+.glightbox-container .gslide-title {
+  font-family: var(--font-h) !important; /* 'Playfair Display' */
+  color: var(--gold) !important; /* Premium Gold */
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  margin-bottom: 4px !important;
+  text-align: center !important;
+}
+
+.glightbox-container .gslide-desc {
+  font-family: var(--font-b) !important; /* Poppins */
+  color: var(--champagne) !important; /* Champagne/White */
+  font-size: 0.88rem !important;
+  line-height: 1.4 !important;
+  opacity: 0.95 !important;
+  text-align: center !important;
+}
+
+/* Fix portrait cropping for Bride and Groom ceremony images */
+#bride-ceremony .cat-img img,
+#groom-ceremony .cat-img img {
+  object-position: center top !important;
 }

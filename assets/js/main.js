@@ -300,7 +300,7 @@ function initPageTransitions() {
   document.querySelectorAll('a[href]').forEach(link => {
     const href = link.getAttribute('href');
     if (!href || href.startsWith('#') || href.startsWith('tel') || href.startsWith('https') || href.startsWith('http') || href.startsWith('mailto')) return;
-    if (link.getAttribute('target') === '_blank') return;
+    if (link.getAttribute('target') === '_blank' || link.classList.contains('glightbox') || link.classList.contains('gallery-lb')) return;
 
     link.addEventListener('click', e => {
       const dest = link.href;

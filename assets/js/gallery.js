@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
       autoplayVideos: false,
       openEffect:  'zoom',
       closeEffect: 'zoom',
-      cssEfects: {
+      cssEffects: {
         zoom: { in:'zoomIn', out:'zoomOut' }
       },
     });
