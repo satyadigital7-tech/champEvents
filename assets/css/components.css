@@ -306,13 +306,26 @@
     position: static;
     opacity: 1; visibility: visible;
     transform: none;
-    background: rgba(255,255,255,0.05);
-    margin-top: 8px;
-    border: 1px solid rgba(212,175,55,0.15);
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    margin: 6px 0 12px;
+    padding: 0;
     display: none;
+    width: 100%;
   }
   .nav-item.open .dropdown-menu { display: block; }
-  .dropdown-link { color:rgba(255,255,255,0.75); }
+  .dropdown-link {
+    justify-content: center;
+    color: rgba(255,255,255,0.75);
+    font-size: 1.05rem;
+    padding: 10px 20px;
+  }
+  .dropdown-link:hover {
+    background: transparent;
+    color: var(--gold);
+    padding: 10px 20px;
+  }
   .nav-mobile-cta {
     display: flex;
     flex-direction: column;
