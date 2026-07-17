@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <style>
+    body { background: #111111 !important; }
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: #111111 !important;
+      z-index: 999999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gallery – Champ Events | Event Photography Gallery Hyderabad</title>
@@ -15,7 +28,7 @@
 </head>
 <body>
 <div id="scroll-progress"></div>
-<div id="preloader"><div class="pre-logo">Champ <span>Events</span></div><p class="pre-tagline">Our Gallery</p><div class="pre-bar"><div class="pre-fill"></div></div></div>
+<div id="preloader"><div class="pre-logo"><img src="assets/assets/CHAMP EVENTS LOGO 01.png" alt="Champ Events"></div><p class="pre-tagline">Our Gallery</p><div class="pre-bar"><div class="pre-fill"></div></div></div>
 <div id="page-transition"></div>
 
 <!-- NAVBAR -->
@@ -38,7 +51,13 @@
           <li><a href="photography.html" class="dropdown-link"><i class="fas fa-camera"></i> Photography &amp; Videography</a></li>
         </ul>
       </li>
-      <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+      <li class="nav-item has-dropdown">
+        <a href="#" class="nav-link dropdown-toggle">Services <i class="fas fa-chevron-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="services.html" class="dropdown-link"><i class="fas fa-list"></i> All Services</a></li>
+          <li><a href="catering.html" class="dropdown-link"><i class="fas fa-utensils"></i> Catering Packages</a></li>
+        </ul>
+      </li>
       <li class="nav-item"><a href="gallery.html" class="nav-link active">Gallery</a></li>
       <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
     </ul>
@@ -252,7 +271,7 @@
 <footer class="footer" id="footer">
   <div class="footer-top"><div class="container"><div class="footer-grid">
     <div class="footer-col"><div class="footer-logo"><img src="assets/assets/CHAMP EVENTS LOGO 01.png" alt="Champ Events" class="footer-logo-img"><div><span class="footer-logo-name">Champ Events</span><span class="footer-logo-tag">Since 2017</span></div></div><p class="footer-desc">Creating unforgettable celebrations since 2017.</p><div class="footer-social"><a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a><a href="#" class="social-link"><i class="fab fa-instagram"></i></a><a href="#" class="social-link"><i class="fab fa-youtube"></i></a><a href="https://wa.me/919666670066" class="social-link" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div>
-    <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="wedding-events.html">Wedding Events</a></li><li><a href="birthday-events.html">Birthday Events</a></li><li><a href="photography.html">Photography</a></li><li><a href="services.html">Services</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="wedding-events.html">Wedding Events</a></li><li><a href="birthday-events.html">Birthday Events</a></li><li><a href="photography.html">Photography</a></li><li><a href="catering.html">Catering Packages</a></li><li><a href="services.html">Services</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="contact.html">Contact</a></li></ul></div>
     <div class="footer-col"><h4>Gallery Categories</h4><ul><li><a href="#" onclick="document.getElementById('filter-wedding').click()">Wedding</a></li><li><a href="#" onclick="document.getElementById('filter-birthday').click()">Birthday</a></li><li><a href="#" onclick="document.getElementById('filter-photography').click()">Photography</a></li><li><a href="#" onclick="document.getElementById('filter-entertainment').click()">Entertainment</a></li><li><a href="#" onclick="document.getElementById('filter-catering').click()">Catering</a></li><li><a href="#" onclick="document.getElementById('filter-camp').click()">Camp Events</a></li></ul></div>
     <div class="footer-col"><h4>Contact Us</h4><div class="footer-contact-item"><i class="fas fa-phone"></i><a href="tel:+919666670066">+91 9666670066</a></div><div class="footer-contact-item"><i class="fab fa-whatsapp"></i><a href="https://wa.me/919666670066" target="_blank">WhatsApp Us</a></div><div class="footer-contact-item"><i class="fas fa-clock"></i><span>Mon–Sun: 9:00 AM – 9:00 PM</span></div><div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><span>Hyderabad, Telangana, India</span></div></div>
   </div></div></div>

@@ -167,6 +167,9 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ========== LAZY IMAGES ========== */
   initLazyImages();
 
+  /* ========== CATERING INITIALIZATION ========== */
+  initCateringFeatures();
+
 });
 
 /* ========================================================
@@ -337,3 +340,166 @@ function initLazyImages() {
     observer.observe(img);
   });
 }
+
+/* ========================================================
+   CATERING PAGE FUNCTIONALITY
+======================================================== */
+function initCateringFeatures() {
+  // 1. Event Type Selector Recommendation Notes
+  const eventBtns = document.querySelectorAll('.catering-event-btn');
+  const recText = document.getElementById('recommendation-text');
+  
+  const recommendations = {
+    wedding: "For grand wedding celebrations, we highly recommend our Vegetarian or Non-Vegetarian **Gold** or **Platinum** packages. They include live cooking counters, specialized dessert lounges, and luxurious buffet layouts appropriate for grand banquets.",
+    reception: "For elegant wedding receptions, the **Platinum** package is the perfect fit. Your guests will be wowed by our premium dessert lounges, seasonal fresh cut fruit bars, and live barbeque counters.",
+    birthday: "For birthday celebrations, our **Silver** and **Gold** packages offer a rich variety of starters, curries, and dessert cups that are a major hit with guests of all ages, all in a highly cost-effective plate rate.",
+    corporate: "For corporate events and business galas, our **Gold** package provides a professional, premium buffet spread with uniformed service personnel, standard live setups, and mocktail welcome drinks.",
+    housewarming: "For intimate housewarming gatherings, the **Silver** package is highly recommended, delivering pure traditional flavors and quick, clean buffet services tailored for private homes."
+  };
+
+  if (eventBtns.length && recText) {
+    eventBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        eventBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const eventType = btn.dataset.event;
+        const text = recommendations[eventType] || recommendations.wedding;
+        
+        // Add a soft fade animation using GSAP if available, otherwise just update text
+        if (typeof gsap !== 'undefined') {
+          gsap.to(recText, { opacity: 0, y: -5, duration: 0.2, onComplete: () => {
+            recText.innerHTML = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            gsap.to(recText, { opacity: 1, y: 0, duration: 0.3 });
+          }});
+        } else {
+          recText.innerHTML = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        }
+      });
+    });
+  }
+
+  // 2. Select Menu CTA -> Auto-populate Package Dropdown & Scroll
+  const selectBtns = document.querySelectorAll('.select-menu-btn');
+  const packageSelect = document.getElementById('c-package');
+  const inquirySection = document.getElementById('catering-inquiry');
+
+  if (selectBtns.length && packageSelect) {
+    selectBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const pkgValue = btn.dataset.package;
+        if (pkgValue) {
+          packageSelect.value = pkgValue;
+          
+          // Custom check: update the event type dropdown too if applicable
+          const typeSelect = document.getElementById('c-type');
+          const currentActiveEvent = document.querySelector('.catering-event-btn.active');
+          if (typeSelect && currentActiveEvent) {
+            const eventVal = currentActiveEvent.dataset.event;
+            // Map event key to dropdown options
+            const eventMap = {
+              wedding: "Wedding",
+              reception: "Reception",
+              birthday: "Birthday",
+              corporate: "Corporate",
+              housewarming: "Housewarming"
+            };
+            if (eventMap[eventVal]) {
+              typeSelect.value = eventMap[eventVal];
+            }
+          }
+        }
+      });
+    });
+  }
+
+  // 3. Print / Save PDF Handlers
+  const printVegBtn = document.getElementById('print-veg-btn');
+  const printNonVegBtn = document.getElementById('print-nonveg-btn');
+  
+  if (printVegBtn) {
+    printVegBtn.addEventListener('click', () => {
+      document.body.classList.add('print-veg-only');
+      document.body.classList.remove('print-nonveg-only');
+      window.print();
+    });
+  }
+  
+  if (printNonVegBtn) {
+    printNonVegBtn.addEventListener('click', () => {
+      document.body.classList.add('print-nonveg-only');
+      document.body.classList.remove('print-veg-only');
+      window.print();
+    });
+  }
+  
+  // Clean up classes after print dialog closes
+  window.addEventListener('afterprint', () => {
+    document.body.classList.remove('print-veg-only', 'print-nonveg-only');
+  });
+
+  // 4. Catering Inquiry Form Submission with WhatsApp redirect
+  const cateringForm = document.getElementById('catering-form');
+  const formSuccess = document.getElementById('c-form-success');
+  const formError = document.getElementById('c-form-error');
+
+  if (cateringForm) {
+    cateringForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const submitBtn = cateringForm.querySelector('button[type="submit"]');
+      const origText = submitBtn.innerHTML;
+      
+      const name = document.getElementById('c-name').value.trim();
+      const phone = document.getElementById('c-phone').value.trim();
+      const email = document.getElementById('c-email').value.trim();
+      const type = document.getElementById('c-type').value;
+      const date = document.getElementById('c-date').value || 'Not Specified';
+      const guests = document.getElementById('c-guests').value || 'Not Specified';
+      const pkg = document.getElementById('c-package').value;
+      const msg = document.getElementById('c-message').value.trim() || 'None';
+      
+      if (formSuccess) formSuccess.style.display = 'none';
+      if (formError) formError.style.display = 'none';
+      
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Directing to WhatsApp...';
+      
+      const formData = new FormData(cateringForm);
+      
+      // 1. Post to email background
+      try {
+        await fetch('assets/php/contact.php', {
+          method: 'POST',
+          body: formData
+        });
+      } catch (err) {
+        console.log("Background email submission failed, redirecting to WhatsApp anyway");
+      }
+
+      // 2. Format WhatsApp Message
+      const waMessage = `*CHAMP EVENTS — NEW CATERING INQUIRY*%0A` +
+        `==================================%0A` +
+        `*Name:* ${encodeURIComponent(name)}%0A` +
+        `*Phone:* ${encodeURIComponent(phone)}%0A` +
+        `*Email:* ${encodeURIComponent(email)}%0A` +
+        `*Event Type:* ${encodeURIComponent(type)}%0A` +
+        `*Event Date:* ${encodeURIComponent(date)}%0A` +
+        `*Expected Guests:* ${encodeURIComponent(guests)}%0A` +
+        `*Package Pref:* ${encodeURIComponent(pkg)}%0A` +
+        `----------------------------------%0A` +
+        `*Custom Requests:*%0A${encodeURIComponent(msg)}`;
+      
+      const waUrl = `https://wa.me/919666670066?text=${waMessage}`;
+      
+      // 3. Open WhatsApp in new tab
+      window.open(waUrl, '_blank');
+      
+      // 4. Show success & reset
+      if (formSuccess) formSuccess.style.display = 'block';
+      cateringForm.reset();
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = origText;
+    });
+  }
+}
+

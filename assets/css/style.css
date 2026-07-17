@@ -143,13 +143,20 @@ p  { color:var(--text-med); line-height:1.75; }
 #preloader.hidden { opacity:0; visibility:hidden; }
 
 .pre-logo {
-  font-family: var(--font-h);
-  font-size: 2.8rem;
-  font-weight: 700;
-  color: var(--white);
-  letter-spacing: 0.02em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.pre-logo span { color: var(--gold); }
+.pre-logo img {
+  height: 120px;
+  width: auto;
+  object-fit: contain;
+  animation: logoPulse 2s infinite ease-in-out;
+}
+@keyframes logoPulse {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.05); opacity: 1; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.45)); }
+}
 
 .pre-tagline {
   font-family: var(--font-b);

@@ -61,7 +61,7 @@
 
 <!-- Preloader -->
 <div id="preloader">
-  <div class="pre-logo">Champ <span>Events</span></div>
+  <div class="pre-logo"><img src="assets/assets/CHAMP EVENTS LOGO 01.png" alt="Champ Events"></div>
   <p class="pre-tagline">Creating Unforgettable Celebrations</p>
   <div class="pre-bar"><div class="pre-fill"></div></div>
 </div>
@@ -92,7 +92,13 @@
           <li><a href="photography.html" class="dropdown-link"><i class="fas fa-camera"></i> Photography &amp; Videography</a></li>
         </ul>
       </li>
-      <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+      <li class="nav-item has-dropdown">
+        <a href="#" class="nav-link dropdown-toggle">Services <i class="fas fa-chevron-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="services.html" class="dropdown-link"><i class="fas fa-list"></i> All Services</a></li>
+          <li><a href="catering.html" class="dropdown-link"><i class="fas fa-utensils"></i> Catering Packages</a></li>
+        </ul>
+      </li>
       <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
       <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
     </ul>
@@ -186,6 +192,46 @@
         </div>
         <a href="contact.html" class="btn btn-primary"><i class="fas fa-calendar-check"></i> Plan Your Event</a>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================= FEATURED PACKAGES GLIMPSE ========================= -->
+<section class="section section-light" id="featured-packages" style="background: #fdfaf2; padding: 100px 0;">
+  <div class="container">
+    <div class="sec-header" data-aos="fade-up">
+      <div class="sec-badge">Exclusive Offerings</div>
+      <h2 class="sec-title">Photography &amp; Catering <span>Packages</span></h2>
+      <p class="sec-sub">Take a glimpse at our premium photography and catering packages curated for royal celebrations.</p>
+      <div class="gold-divider"><span></span><i class="fas fa-gem"></i><span></span></div>
+    </div>
+
+    <div class="packages-glimpse-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 50px;">
+      
+      <!-- Photography Packages Teaser -->
+      <div class="glimpse-card" data-aos="fade-right" style="position: relative; height: 450px; border-radius: var(--r-xl); overflow: hidden; background: #000; box-shadow: var(--sh-card); display: flex; flex-direction: column; justify-content: flex-end; padding: 40px;">
+        <div class="glimpse-card-bg" style="position: absolute; inset: 0; background-image: url('assets/assets/photography &amp; videography/Wedding_Photography.jpg.jpeg'); background-size: cover; background-position: center; opacity: 0.45; transition: transform var(--tr-l);"></div>
+        <div class="glimpse-card-overlay" style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 60%, transparent 100%); z-index: 1;"></div>
+        <div class="glimpse-card-content" style="position: relative; z-index: 2;">
+          <div class="glimpse-badge" style="background: var(--grad-gold); color: var(--dark); display: inline-block; padding: 4px 14px; border-radius: var(--r-full); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin-bottom: 15px;">₹1,29,000 Onwards</div>
+          <h3 style="font-family: var(--font-h); font-size: 2rem; color: #fff; margin-bottom: 10px;">Photography &amp; Videography</h3>
+          <p style="color: rgba(255,255,255,0.75); font-size: 0.9rem; line-height: 1.6; margin-bottom: 24px;">Capture your timeless moments in cinema-grade luxury. From candid photography and dual drone cinematic films to 360 Spin Booths and premium hardbound albums.</p>
+          <a href="photography.html#photo-packages" class="btn btn-primary"><i class="fas fa-camera"></i> Explore Photo Packages</a>
+        </div>
+      </div>
+
+      <!-- Catering Packages Teaser -->
+      <div class="glimpse-card" data-aos="fade-left" style="position: relative; height: 450px; border-radius: var(--r-xl); overflow: hidden; background: #000; box-shadow: var(--sh-card); display: flex; flex-direction: column; justify-content: flex-end; padding: 40px;">
+        <div class="glimpse-card-bg" style="position: absolute; inset: 0; background-image: url('https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&amp;fit=crop&amp;w=800&amp;q=80'); background-size: cover; background-position: center; opacity: 0.45; transition: transform var(--tr-l);"></div>
+        <div class="glimpse-card-overlay" style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 60%, transparent 100%); z-index: 1;"></div>
+        <div class="glimpse-card-content" style="position: relative; z-index: 2;">
+          <div class="glimpse-badge" style="background: #2e7d32; color: #fff; display: inline-block; padding: 4px 14px; border-radius: var(--r-full); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin-bottom: 15px; box-shadow: 0 4px 10px rgba(46,125,50,0.2);">Veg ₹350 | Non-Veg ₹450 onwards</div>
+          <h3 style="font-family: var(--font-h); font-size: 2rem; color: #fff; margin-bottom: 10px;">Gourmet Catering Menus</h3>
+          <p style="color: rgba(255,255,255,0.75); font-size: 0.9rem; line-height: 1.6; margin-bottom: 24px;">Delectable traditional and modern multi-cuisine menus curated by expert chefs. Live counters, customized event menus (Weddings, Birthdays), and premium display setups.</p>
+          <a href="catering.html" class="btn btn-primary" style="background: var(--grad-gold); color: var(--dark); border: none;"><i class="fas fa-utensils"></i> Explore Catering Packages</a>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -481,6 +527,7 @@
             <li><a href="wedding-events.html">Wedding Events</a></li>
             <li><a href="birthday-events.html">Birthday Events</a></li>
             <li><a href="photography.html">Photography</a></li>
+            <li><a href="catering.html">Catering Packages</a></li>
             <li><a href="services.html">Services</a></li>
             <li><a href="gallery.html">Gallery</a></li>
             <li><a href="contact.html">Contact</a></li>
@@ -492,7 +539,7 @@
             <li><a href="services.html">Wedding Decoration</a></li>
             <li><a href="services.html">Birthday Decoration</a></li>
             <li><a href="services.html">Entertainment</a></li>
-            <li><a href="services.html">Catering</a></li>
+            <li><a href="catering.html">Catering Packages</a></li>
             <li><a href="services.html">Event Management</a></li>
             <li><a href="photography.html">Photography</a></li>
           </ul>

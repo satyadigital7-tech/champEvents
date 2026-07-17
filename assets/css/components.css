@@ -747,6 +747,8 @@
 }
 .why-card:hover { transform:translateY(-8px); box-shadow:var(--sh-card); border-color:var(--border-gold); }
 .why-card:hover::before { opacity:1; }
+.why-card:hover .why-title { color: var(--dark) !important; }
+.why-card:hover .why-desc { color: var(--text-dark) !important; }
 
 .why-icon {
   width: 72px; height: 72px;
@@ -1705,3 +1707,798 @@
 @media(max-width:1024px) { .bday-grid { grid-template-columns:repeat(3,1fr); } }
 @media(max-width:768px)  { .bday-grid { grid-template-columns:repeat(2,1fr); } }
 @media(max-width:480px)  { .bday-grid { grid-template-columns:1fr; } }
+
+/* ========================================================
+   PHOTOGRAPHY PACKAGES
+======================================================== */
+.photo-packages-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 50px;
+}
+.photo-package-card {
+  position: relative;
+  height: 680px;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  box-shadow: var(--sh-lg);
+  border: 1px solid rgba(212,175,55,0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: all var(--tr-m);
+}
+.photo-package-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(212,175,55,0.4);
+  box-shadow: var(--sh-gH);
+}
+.photo-package-bg-img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform var(--tr-s);
+  z-index: 1;
+}
+.photo-package-card:hover .photo-package-bg-img {
+  transform: scale(1.06);
+}
+.photo-package-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(17,17,17,0.1) 0%, rgba(17,17,17,0.3) 40%, rgba(17,17,17,0.95) 100%);
+  z-index: 2;
+  transition: all var(--tr-m);
+}
+.photo-package-card:hover::before {
+  background: linear-gradient(to bottom, rgba(17,17,17,0.2) 0%, rgba(17,17,17,0.45) 35%, rgba(17,17,17,0.98) 100%);
+}
+.photo-package-badge {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  background: var(--grad-gold);
+  color: var(--dark);
+  padding: 6px 16px;
+  border-radius: var(--r-full);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  box-shadow: var(--sh-sm);
+  z-index: 3;
+}
+.photo-package-badge.popular {
+  background: var(--grad-accent);
+  color: var(--white);
+  border: 1px solid rgba(212,175,55,0.3);
+}
+.photo-package-content {
+  position: relative;
+  z-index: 3;
+  padding: 30px;
+  background: rgba(17, 17, 17, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(212, 175, 55, 0.15);
+  border-bottom-left-radius: var(--r-xl);
+  border-bottom-right-radius: var(--r-xl);
+}
+.photo-package-name {
+  font-family: var(--font-h);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+.photo-package-price {
+  font-family: var(--font-h);
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--gold);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+.photo-package-price span {
+  font-size: 0.9rem;
+  font-family: var(--font-b);
+  color: rgba(255,255,255,0.6);
+  font-weight: 400;
+}
+.photo-package-divider {
+  height: 1px;
+  background: linear-gradient(to right, var(--gold), transparent);
+  margin-bottom: 18px;
+}
+.photo-package-checklist {
+  list-style: none;
+  margin-bottom: 24px;
+  height: 220px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+.photo-package-checklist::-webkit-scrollbar {
+  width: 3px;
+}
+.photo-package-checklist::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.3);
+  border-radius: var(--r-full);
+}
+.photo-package-checklist li {
+  color: rgba(255,255,255,0.8);
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.photo-package-checklist li i {
+  color: var(--gold);
+  font-size: 0.78rem;
+}
+.photo-package-ctas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.photo-package-ctas .btn {
+  padding: 10px 16px;
+  font-size: 0.78rem;
+  justify-content: center;
+  border-radius: var(--r-md);
+}
+
+/* ========================================================
+   PACKAGE COMPARISON TABLE
+======================================================== */
+.comparison-table-wrapper {
+  margin-top: 50px;
+  overflow-x: auto;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--border-gold);
+  background: rgba(26,26,26,0.6);
+  backdrop-filter: blur(10px);
+}
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  min-width: 750px;
+}
+.comparison-table th, .comparison-table td {
+  padding: 18px 24px;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+.comparison-table th {
+  font-family: var(--font-h);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--white);
+  background: rgba(17,17,17,0.4);
+}
+.comparison-table th:first-child {
+  width: 35%;
+}
+.comparison-table td {
+  color: rgba(255,255,255,0.85);
+  font-size: 0.9rem;
+}
+.comparison-table tr:hover td {
+  background: rgba(212, 175, 55, 0.03);
+}
+.comparison-table td i.fa-check {
+  color: var(--gold);
+}
+.comparison-table td i.fa-times {
+  color: rgba(255,255,255,0.25);
+}
+.comparison-table-pkg-header {
+  font-family: var(--font-h);
+  font-size: 1.15rem;
+  color: var(--gold) !important;
+  font-weight: 700;
+}
+.comparison-table-pkg-price {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.5);
+  display: block;
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+/* ========================================================
+   CATERING STYLES
+======================================================== */
+.catering-hero {
+  position: relative;
+  padding: 180px 0 100px;
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  color: var(--white);
+}
+.catering-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(17,17,17,0.8) 0%, rgba(17,17,17,0.92) 100%);
+  z-index: 1;
+}
+.catering-hero .container {
+  position: relative;
+  z-index: 2;
+}
+.catering-event-nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 40px 0 20px;
+}
+.catering-event-btn {
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: var(--text-med);
+  padding: 10px 24px;
+  border-radius: var(--r-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--tr-m);
+}
+.catering-event-btn:hover, .catering-event-btn.active {
+  background: var(--grad-gold);
+  color: var(--dark);
+  border-color: transparent;
+  box-shadow: var(--sh-gold);
+  transform: translateY(-2px);
+}
+.catering-recommendation-box {
+  max-width: 800px;
+  margin: 0 auto 40px;
+  background: rgba(212,175,55,0.05);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--r-md);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-align: left;
+}
+.catering-recommendation-box i {
+  color: var(--gold);
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+.catering-recommendation-box p {
+  font-size: 0.88rem;
+  color: var(--text-dark);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.catering-section-title {
+  font-family: var(--font-h);
+  font-size: 2.2rem;
+  color: var(--dark);
+  text-align: center;
+  margin-bottom: 40px;
+  position: relative;
+}
+.catering-section-title span {
+  color: var(--gold);
+}
+.catering-section-title.light {
+  color: var(--white);
+}
+
+.catering-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-bottom: 60px;
+}
+.catering-card {
+  background: var(--white);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  box-shadow: var(--sh-card);
+  border: 1px solid var(--border-light);
+  display: flex;
+  flex-direction: column;
+  transition: all var(--tr-m);
+  position: relative;
+}
+.catering-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--sh-md);
+}
+.catering-card.veg {
+  border-top: 4px solid #2e7d32;
+}
+.catering-card.non-veg {
+  border-top: 4px solid #c62828;
+}
+.catering-card-header {
+  padding: 30px 30px 20px;
+  text-align: center;
+  position: relative;
+}
+.catering-card-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+  font-size: 1.25rem;
+}
+.veg .catering-card-icon {
+  background: rgba(46, 125, 50, 0.1);
+  color: #2e7d32;
+}
+.non-veg .catering-card-icon {
+  background: rgba(198, 40, 40, 0.1);
+  color: #c62828;
+}
+.catering-card-title {
+  font-family: var(--font-h);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 8px;
+}
+.catering-card-price-badge {
+  display: inline-block;
+  background: var(--grad-gold);
+  color: var(--dark);
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 6px 18px;
+  border-radius: var(--r-full);
+  box-shadow: var(--sh-sm);
+  margin-top: 4px;
+}
+.catering-card-body {
+  padding: 0 30px 30px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.catering-card-subtitle {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-light);
+  font-weight: 600;
+  margin-bottom: 12px;
+  text-align: center;
+}
+.catering-card-list {
+  list-style: none;
+  margin-bottom: 24px;
+  flex: 1;
+}
+.catering-card-list li {
+  padding: 10px 0;
+  border-bottom: 1px dotted rgba(0,0,0,0.06);
+  font-size: 0.88rem;
+  color: var(--text-dark);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+}
+.catering-card-list li:last-child {
+  border-bottom: none;
+}
+.veg .catering-card-list li i {
+  color: #2e7d32;
+  font-size: 0.8rem;
+}
+.non-veg .catering-card-list li i {
+  color: #c62828;
+  font-size: 0.8rem;
+}
+.catering-card-btn {
+  width: 100%;
+  justify-content: center;
+  border-radius: var(--r-md);
+  padding: 12px 20px;
+  font-size: 0.85rem;
+}
+
+/* ========================================================
+   CATERING COMPARISON
+======================================================== */
+.catering-comparison-section {
+  padding: 100px 0;
+  background: var(--dark);
+  color: var(--white);
+}
+.catering-comparison-table-wrap {
+  overflow-x: auto;
+  border-radius: var(--r-lg);
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.02);
+  margin-top: 30px;
+}
+.catering-comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+}
+.catering-comparison-table th, .catering-comparison-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  font-size: 0.88rem;
+}
+.catering-comparison-table th {
+  background: rgba(0,0,0,0.3);
+  font-family: var(--font-h);
+  font-weight: 700;
+  text-align: center;
+  color: var(--white);
+}
+.catering-comparison-table th:first-child {
+  text-align: left;
+  width: 28%;
+}
+.catering-comparison-table td {
+  text-align: center;
+  color: rgba(255,255,255,0.8);
+}
+.catering-comparison-table td:first-child {
+  text-align: left;
+  font-weight: 600;
+  color: var(--white);
+}
+.catering-comparison-table tr:hover td {
+  background: rgba(255,255,255,0.02);
+}
+.catering-comparison-table td i {
+  font-size: 1rem;
+}
+.catering-comparison-table td i.fa-check-circle {
+  color: var(--gold);
+}
+.catering-comparison-table td i.fa-times-circle {
+  color: rgba(255,255,255,0.15);
+}
+
+.catering-comparison-table-wrap.light-table {
+  border: 1px solid var(--border-light);
+  background: var(--white);
+}
+.light-table .catering-comparison-table th {
+  background: rgba(0, 0, 0, 0.04);
+  color: var(--dark);
+  border-bottom: 2px solid var(--border-light);
+}
+.light-table .catering-comparison-table th, 
+.light-table .catering-comparison-table td {
+  border-bottom: 1px solid var(--border-light);
+}
+.light-table .catering-comparison-table td {
+  color: var(--text-dark);
+}
+.light-table .catering-comparison-table td:first-child {
+  color: var(--dark);
+}
+.light-table .catering-comparison-table tr:hover td {
+  background: rgba(0, 0, 0, 0.01);
+}
+.light-table .catering-comparison-table td i.fa-times-circle {
+  color: rgba(0, 0, 0, 0.15);
+}
+
+/* ========================================================
+   CATERING DOWNLOAD / PRINT TOOL
+======================================================== */
+.catering-download-sec {
+  background: var(--light-bg);
+  padding: 60px 0;
+  text-align: center;
+}
+.catering-download-card {
+  max-width: 600px;
+  margin: 0 auto;
+  background: var(--white);
+  padding: 40px;
+  border-radius: var(--r-xl);
+  box-shadow: var(--sh-md);
+  border: 1px solid var(--border-light);
+}
+.catering-download-icon {
+  font-size: 2.5rem;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.catering-download-title {
+  font-family: var(--font-h);
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.catering-download-desc {
+  font-size: 0.9rem;
+  color: var(--text-med);
+  margin-bottom: 24px;
+}
+
+/* ========================================================
+   CATERING INQUIRY FORM
+======================================================== */
+.catering-inquiry-section {
+  padding: 100px 0;
+  background: var(--dark);
+  color: var(--white);
+}
+.catering-inquiry-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+.catering-inquiry-info h3 {
+  font-family: var(--font-h);
+  font-size: 2.2rem;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+.catering-inquiry-info h3 span { color:var(--gold); }
+.catering-inquiry-info p {
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 30px;
+  line-height: 1.7;
+}
+.catering-contact-detail {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.catering-contact-detail-icon {
+  width: 50px; height: 50px;
+  background: rgba(212,175,55,0.1);
+  color: var(--gold);
+  border-radius: 50%;
+  display: flex; align-items:center; justify-content:center;
+  font-size: 1.1rem;
+}
+.catering-contact-detail-text h5 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 2px;
+}
+.catering-contact-detail-text p {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--white);
+  margin: 0;
+}
+.catering-inquiry-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 40px;
+  border-radius: var(--r-xl);
+  backdrop-filter: blur(10px);
+}
+.catering-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.catering-form-full {
+  grid-column: span 2;
+}
+.catering-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.catering-form-group label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.6);
+  text-transform: uppercase;
+}
+.catering-form-group input, .catering-form-group select, .catering-form-group textarea {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--r-sm);
+  padding: 12px 16px;
+  color: var(--white);
+  font-family: var(--font-b);
+  font-size: 0.88rem;
+  transition: all var(--tr-f);
+}
+.catering-form-group input:focus, .catering-form-group select:focus, .catering-form-group textarea:focus {
+  border-color: var(--gold);
+  background: rgba(255,255,255,0.08);
+  outline: none;
+  box-shadow: 0 0 10px rgba(212,175,55,0.25);
+}
+.catering-form-group select option {
+  background: var(--dark);
+  color: var(--white);
+}
+
+/* ========================================================
+   NAV DROP-DOWN ADDITIONS
+======================================================== */
+.nav-item.has-dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.dropdown-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.75);
+  border-radius: var(--r-sm);
+  transition: all var(--tr-f);
+}
+.dropdown-link:hover {
+  background: rgba(212, 175, 55, 0.1);
+  color: var(--gold);
+  padding-left: 18px;
+}
+.dropdown-link i {
+  font-size: 0.85rem;
+  width: 14px;
+  text-align: center;
+}
+
+/* ========================================================
+   PRINT OVERRIDES FOR PDF DOWNLOADS
+======================================================== */
+@media print {
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  #preloader, #page-transition, #scroll-progress, .navbar, .footer, #back-to-top, #whatsapp-float, .catering-hero, .catering-event-nav, .catering-recommendation-box, .catering-comparison-section, .catering-download-sec, .catering-inquiry-section, .sec-badge, .gold-divider, .btn, .catering-card-btn, .text-center {
+    display: none !important;
+  }
+  body.print-veg-only #nonveg-menus-wrap {
+    display: none !important;
+  }
+  body.print-nonveg-only #veg-menus-wrap {
+    display: none !important;
+  }
+  /* Force all animate-on-scroll elements to be visible */
+  [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    visibility: visible !important;
+  }
+  .catering-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 30px !important;
+    display: grid !important;
+    page-break-inside: avoid;
+  }
+  .catering-card {
+    box-shadow: none !important;
+    border: 2px solid #ccc !important;
+    background: #fff !important;
+    color: #000 !important;
+    page-break-inside: avoid;
+  }
+  .catering-card-title {
+    color: #000 !important;
+  }
+  .catering-card-price-badge {
+    background: #f0f0f0 !important;
+    color: #000 !important;
+    border: 1px solid #999 !important;
+    box-shadow: none !important;
+  }
+  .catering-card-list li {
+    border-bottom: 1px solid #eee !important;
+    color: #333 !important;
+  }
+  .catering-section-title {
+    color: #000 !important;
+    font-size: 1.8rem !important;
+    margin-top: 30px !important;
+    display: block !important;
+  }
+  .catering-card-icon {
+    display: none !important;
+  }
+  .container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+}
+
+/* ========================================================
+   RESPONSIVE OVERRIDES
+======================================================== */
+@media (max-width: 1024px) {
+  .photo-packages-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .catering-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .catering-inquiry-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+@media (max-width: 768px) {
+  .photo-package-card {
+    height: 600px;
+  }
+  .photo-package-price {
+    font-size: 1.8rem;
+  }
+  .catering-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .photo-packages-grid {
+    grid-template-columns: 1fr;
+  }
+  .photo-package-card {
+    height: 550px;
+  }
+  .catering-card {
+    margin: 0 10px;
+  }
+  .catering-inquiry-card {
+    padding: 25px;
+  }
+  .catering-form-grid {
+    grid-template-columns: 1fr;
+  }
+  .catering-form-full {
+    grid-column: span 1;
+  }
+}
+
+/* ========================================================
+   FEATURED PACKAGES GLIMPSE (HOME PAGE)
+======================================================== */
+.glimpse-card:hover .glimpse-card-bg {
+  transform: scale(1.06);
+}
+
+@media (max-width: 768px) {
+  .packages-glimpse-grid {
+    grid-template-columns: 1fr !important;
+    gap: 30px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .catering-download-card {
+    padding: 24px 16px !important;
+  }
+  .catering-download-btns {
+    gap: 12px !important;
+  }
+  .catering-download-btns .btn {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}
+
