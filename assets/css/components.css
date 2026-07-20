@@ -293,23 +293,30 @@
 
 /* Mobile menu */
 @media(max-width:1024px) {
-  .hamburger { display:flex; }
+  .hamburger { display:flex; z-index: 10001; }
+  .nav-brand { position: relative; z-index: 10001; }
   .nav-cta { display:none; }
   .nav-menu {
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
+    top: 0; left: 0;
+    width: 100vw;
+    width: 100dvw;
+    height: 100vh;
+    height: 100dvh;
+    min-height: 100vh;
+    min-height: 100dvh;
     flex-direction: column;
     justify-content: flex-start;
-    gap: 6px;
-    background: rgba(10,10,10,0.98);
-    backdrop-filter: blur(20px);
+    gap: 8px;
+    background: #0a0a0a !important;
     opacity: 0;
     visibility: hidden;
     transform: translateX(100%);
     transition: all var(--tr-m);
-    z-index: 999;
-    padding: 110px 24px 40px;
+    z-index: 10000;
+    padding: 95px 24px 40px;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
   .nav-menu.open { opacity:1; visibility:visible; transform:translateX(0); }
   .nav-item {
@@ -318,24 +325,31 @@
     align-items: center;
     width: 100%;
   }
-  .nav-link { font-size:1.15rem; padding:10px 20px; color:var(--white); }
+  .nav-link {
+    font-size: 1.15rem;
+    padding: 12px 20px;
+    color: var(--white);
+    width: 100%;
+    justify-content: center;
+  }
   .nav-link:hover { color:var(--gold); }
   .dropdown-menu {
     position: static;
     opacity: 1; visibility: visible;
     transform: none;
-    background: transparent;
+    background: rgba(255,255,255,0.04);
     box-shadow: none;
-    border: none;
+    border: 1px solid rgba(212,175,55,0.15);
+    border-radius: var(--r-sm);
     margin: 6px 0 12px;
-    padding: 0;
+    padding: 6px 0;
     display: none;
     width: 100%;
   }
   .nav-item.open .dropdown-menu { display: block; }
   .dropdown-link {
     justify-content: center;
-    color: rgba(255,255,255,0.75);
+    color: rgba(255,255,255,0.85);
     font-size: 1.05rem;
     padding: 10px 20px;
   }
@@ -348,7 +362,7 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-    margin-top: 20px;
+    margin-top: 24px;
     width: 100%;
     padding: 0 20px;
   }
