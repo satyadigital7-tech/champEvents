@@ -6,25 +6,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ========== PRELOADER ========== */
   const preloader = document.getElementById('preloader');
-  if (preloader) {
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        preloader.classList.add('hidden');
-        document.body.style.overflow = '';
-        initHeroAnimations();
-      }, 500);
-    });
-    // Fallback
-    setTimeout(() => {
-      if (preloader && !preloader.classList.contains('hidden')) {
-        preloader.classList.add('hidden');
-        document.body.style.overflow = '';
+  const hidePreloader = () => {
+    if (preloader && !preloader.classList.contains('hidden')) {
+      preloader.classList.add('hidden');
+      document.body.style.overflow = '';
+      if (typeof initHeroAnimations === 'function') {
         initHeroAnimations();
       }
-    }, 3000);
+    }
+  };
+
+  if (preloader) {
     document.body.style.overflow = 'hidden';
+    if (document.readyState === 'complete') {
+      setTimeout(hidePreloader, 400);
+    } else {
+      window.addEventListener('load', () => setTimeout(hidePreloader, 400));
+      setTimeout(hidePreloader, 2500); // Fallback
+    }
   } else {
-    initHeroAnimations();
+    if (typeof initHeroAnimations === 'function') {
+      initHeroAnimations();
+    }
   }
 
   /* ========== SCROLL PROGRESS ========== */
