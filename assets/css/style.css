@@ -187,12 +187,12 @@ p  { color:var(--text-med); line-height:1.75; }
   }
 }
 
-.pre-tagline {
+.pre-title {
   order: 2;
-  font-family: var(--font-b);
-  font-size: 1.05rem;
+  font-family: var(--font-h);
+  font-size: 1.8rem;
   font-weight: 700;
-  letter-spacing: 4px;
+  letter-spacing: 5px;
   text-transform: uppercase;
   color: var(--white);
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
@@ -202,8 +202,23 @@ p  { color:var(--text-med); line-height:1.75; }
   animation: preloaderElementFadeIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.3s forwards;
 }
 
-.pre-bar {
+.pre-tagline {
   order: 3;
+  font-family: var(--font-b);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  margin: 0;
+  opacity: 0;
+  animation: preloaderElementFadeIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.5s forwards;
+}
+
+.pre-bar {
+  order: 4;
   width: 220px;
   height: 3px;
   background: rgba(255, 255, 255, 0.12);
@@ -211,14 +226,14 @@ p  { color:var(--text-med); line-height:1.75; }
   overflow: hidden;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   opacity: 0;
-  animation: preloaderElementFadeIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.5s forwards;
+  animation: preloaderElementFadeIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.7s forwards;
 }
 .pre-fill {
   height: 100%;
   width: 0%;
   background: var(--grad-gold);
   border-radius: var(--r-full);
-  animation: preload 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s forwards;
+  animation: preload 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.7s forwards;
 }
 
 @keyframes preloaderElementFadeIn {
@@ -245,15 +260,23 @@ p  { color:var(--text-med); line-height:1.75; }
   .pre-logo img {
     width: 180px;
   }
-  .pre-tagline {
-    font-size: 0.9rem;
+  .pre-title {
+    font-size: 1.3rem;
     letter-spacing: 3px;
     padding: 0 16px;
     opacity: 0;
     animation: preloaderElementFadeIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.3s forwards !important;
   }
+  .pre-tagline {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    padding: 0 16px;
+    opacity: 0;
+    animation: preloaderElementFadeIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.5s forwards !important;
+  }
   .pre-bar {
     width: 170px;
+    animation: preloaderElementFadeIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.7s forwards !important;
   }
 }
 
